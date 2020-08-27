@@ -3,7 +3,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android-extensions")
 }
-group = "me.ajcabanatuan"
+group = "com.chewcaba"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -42,7 +42,7 @@ kotlin {
 android {
     compileSdkVersion(29)
     defaultConfig {
-        minSdkVersion(24)
+        minSdkVersion(21)
         targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"
