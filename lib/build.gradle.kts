@@ -3,21 +3,23 @@ import org.jetbrains.kotlin.gradle.tasks.*
 val frameworkName = "iosFramework"
 
 plugins {
-    kotlin("multiplatform") version "1.4.0"
     id("com.android.library")
+    kotlin("multiplatform") version "1.4.0"
     id("kotlin-android-extensions")
-//    id("maven-publish")
+    id("maven-publish")
 }
-//group = "com.chewcaba.kmp"
-//version = "1.0-SNAPSHOT"
-//
-//publishing {
-//    repositories {
-//        maven {
-//            name = "KmpSample"
-//        }
-//    }
-//}
+group = "com.chewcaba"
+version = "1.0"
+
+publishing {
+    repositories {
+        mavenLocal()
+        maven {
+            name = "KmpSample"
+            url = uri("file://${buildDir}/repo")
+        }
+    }
+}
 
 repositories {
     gradlePluginPortal()
@@ -27,7 +29,7 @@ repositories {
 }
 kotlin {
     android() {
-//        publishLibraryVariants("release", "debug")
+        publishLibraryVariants("release", "debug")
     }
     iosX64("ios") {
         binaries {
