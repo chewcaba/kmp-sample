@@ -1,11 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.*
 
-val frameworkName = "iosFramework"
+val iosFrameworkName = "iosFramework"
 
 plugins {
     id("com.android.library")
     kotlin("multiplatform") version "1.4.0"
     id("kotlin-android-extensions")
+//    kotlin("native.cocoapods") version "1.4.0"
     id("maven-publish")
 }
 group = "com.chewcaba"
@@ -27,24 +28,41 @@ repositories {
     jcenter()
     mavenCentral()
 }
+
 kotlin {
     android() {
         publishLibraryVariants("release", "debug")
     }
-    iosX64("ios") {
-        binaries {
-            framework {
-                baseName = "library"
-            }
+//    cocoapods {
+//        // Configure fields required by CocoaPods.
+//        summary = "Kotlin/Native & Multiplatform Sample Module"
+//        homepage = "https://kotlinlang.org/docs/reference/native/cocoapods.html"
+//
+//        // You can change the name of the produced framework.
+//        // By default, it is the name of the Gradle project.
+//        frameworkName = iosFrameworkName
+//    }
+    val iosX64 = iosX64("ios")
+    val iosArm64 = iosArm64("iosArm64")
+    configure(listOf(iosX64, iosArm64)) {
+        binaries.framework {
+            baseName = iosFrameworkName
         }
     }
-//    val iosArm64 = iosArm64("iosArm64")
-//    val iosX64 = iosX64("iosX64")
-//    configure(listOf(iosArm64, iosX64)) {
-//        binaries.framework {
-//            baseName = "iosKmpFramework"
-//        }
-//    }
+
+    // Create a task to build a fat framework.
+    tasks.create("debugFatFramework", FatFrameworkTask::class) {
+        // The fat framework must have the same base name as the initial frameworks.
+        baseName = iosFrameworkName
+        // The default destination directory is '<build directory>/fat-framework'.
+        destinationDir = buildDir.resolve("fat-framework/debug")
+        // Specify the frameworks to be merged.
+        from(
+            iosX64.binaries.getFramework("DEBUG"),
+            iosArm64.binaries.getFramework("DEBUG")
+        )
+    }
+
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
@@ -59,33 +77,12 @@ kotlin {
             }
         }
         val androidTest by getting
-        val iosMain by getting
+
+        val iosArm64Main by getting
+        val iosMain by getting {
+            iosArm64Main.dependsOn(this)
+        }
         val iosTest by getting
-//        val iosArm64Main by getting
-//        val iosX64Main by getting
-//        val iosMain by creating
-//        configure(listOf(iosArm64Main, iosX64Main)) {
-//            dependsOn(iosMain)
-//        }
-//        val iosTest by creating
-
-
-
-//        tasks.register<FatFrameworkTask>("debugFatFramework") {
-//            baseName = frameworkName
-//            group = "Universal framework"
-//            description = "Builds a universal (fat) debug framework"
-//
-//            from(iosX64.binaries.getFramework("DEBUG"))
-//        }
-//
-//        tasks.register<FatFrameworkTask>("releaseFatFramework") {
-//            baseName = frameworkName
-//            group = "Universal framework"
-//            description = "Builds a universal (release) debug framework"
-//
-//            from(iosArm64.binaries.getFramework("RELEASE"), iosArm32.binaries.getFramework("RELEASE"))
-//        }
     }
 }
 android {
