@@ -7,8 +7,12 @@
 //
 
 import SwiftUI
+import iosFramework
 
 struct ContentView: View {
+    
+    var message: String = 
+    
     var body: some View {
         Text("Hello, World!")
     }

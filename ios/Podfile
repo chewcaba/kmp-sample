@@ -15,5 +15,7 @@ target 'kmpsample' do
   target 'kmpsampleUITests' do
     # Pods for testing
   end
+   
+  pod 'kmp_sample', :path => '../lib'
 
 end

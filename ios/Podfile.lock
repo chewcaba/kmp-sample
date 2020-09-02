@@ -1,0 +1,16 @@
+PODS:
+  - kmp_sample (1.0)
+
+DEPENDENCIES:
+  - kmp_sample (from `../lib`)
+
+EXTERNAL SOURCES:
+  kmp_sample:
+    :path: "../lib"
+
+SPEC CHECKSUMS:
+  kmp_sample: 8709e43f638c4b82ca534fda72f36286b4043663
+
+PODFILE CHECKSUM: 50db65d99dd2c7bc3ffd5e84b8965d30f2f080db
+
+COCOAPODS: 1.9.3
