@@ -1,14 +1,20 @@
 package com.chewcaba.kmpsample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.chewcaba.lib.createApplicationScreenMessage
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.platform.setContent
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        textView.text = createApplicationScreenMessage()
+        supportActionBar?.hide()
+        setContent {
+            MaterialTheme {
+                LoginScreen {
+
+                }
+            }
+        }
     }
 }
