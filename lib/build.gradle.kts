@@ -48,19 +48,6 @@ kotlin {
         podfile = project.file("../ios/Podfile")
     }
 
-    // Create a task to build a fat framework.
-//    tasks.create("debugFatFramework", FatFrameworkTask::class) {
-//        // The fat framework must have the same base name as the initial frameworks.
-//        baseName = iosFrameworkName
-//        // The default destination directory is '<build directory>/fat-framework'.
-//        destinationDir = buildDir.resolve("fat-framework/debug")
-//        // Specify the frameworks to be merged.
-//        from(
-//            iosX64.binaries.getFramework("DEBUG"),
-//            iosArm64.binaries.getFramework("DEBUG")
-//        )
-//    }
-
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
