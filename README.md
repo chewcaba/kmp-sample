@@ -1,1 +1,1 @@
-# kotlin-native-sample
+# Kotlin Multiplatform Sample Project
