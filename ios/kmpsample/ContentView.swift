@@ -11,10 +11,10 @@ import iosFramework
 
 struct ContentView: View {
     
-    var message: String = 
+    var greeting = Greeting()
     
     var body: some View {
-        Text("Hello, World!")
+        Text("Hello, World! \(greeting.message())")
     }
 }
 
