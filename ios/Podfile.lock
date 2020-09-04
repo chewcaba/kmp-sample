@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../lib"
 
 SPEC CHECKSUMS:
-  kmp_sample: 8709e43f638c4b82ca534fda72f36286b4043663
+  kmp_sample: 4f6bb08cdf1cb4d29748ae0937fada41145e1679
 
 PODFILE CHECKSUM: 3524f3cffb80e4f1419fdadb3466a0a2474ab85a
 
