@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
     spec.summary                  = 'Kotlin/Native & Multiplatform Sample Module'
 
     spec.static_framework         = true
-    spec.vendored_frameworks      = "build/cocoapods/framework/iosFramework.framework"
+    spec.vendored_frameworks      = "build/cocoapods/framework/SharedFramework.framework"
     spec.libraries                = "c++"
     spec.module_name              = "#{spec.name}_umbrella"
 
@@ -34,7 +34,7 @@ Pod::Spec.new do |spec|
             :script => <<-SCRIPT
                 set -ev
                 REPO_ROOT="$PODS_TARGET_SRCROOT"
-                "$REPO_ROOT/../../../../../../../private/var/folders/gg/47x1d53j5hz3hlbxsrn1qcn40000gn/T/wrap11loc/gradlew" -p "$REPO_ROOT" ::syncFramework \
+                "$REPO_ROOT/gradlew" -p "$REPO_ROOT" ::syncFramework \
                     -Pkotlin.native.cocoapods.target=$KOTLIN_TARGET \
                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION \
                     -Pkotlin.native.cocoapods.cflags="$OTHER_CFLAGS" \
