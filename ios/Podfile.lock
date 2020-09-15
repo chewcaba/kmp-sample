@@ -1,5 +1,5 @@
 PODS:
-  - kmp_sample (1.0)
+  - kmp_sample (1.0.1)
 
 DEPENDENCIES:
   - kmp_sample (from `../lib`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../lib"
 
 SPEC CHECKSUMS:
-  kmp_sample: 4f6bb08cdf1cb4d29748ae0937fada41145e1679
+  kmp_sample: b2abf6f31c886b86ecf8d8c67fcd7f02cf4cb0d8
 
 PODFILE CHECKSUM: 3524f3cffb80e4f1419fdadb3466a0a2474ab85a
 
