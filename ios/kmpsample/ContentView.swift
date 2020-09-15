@@ -7,11 +7,10 @@
 //
 
 import SwiftUI
-import iosFramework
+import SharedFramework
 
 struct ContentView: View {
     
-    var greeting = Greeting()
     @State var username = ""
     @State var password = ""
     
