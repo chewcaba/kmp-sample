@@ -1,3 +1,7 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
+val iosFrameworkName = "SharedFramework"
+
 plugins {
     kotlin("multiplatform") version "1.4.0"
     id("com.android.library")
@@ -25,7 +29,13 @@ kotlin {
     android {
         publishAllLibraryVariants()
     }
-    ios()
+    val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
+        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
+            ::iosArm64
+        else
+            ::iosX64
+
+    iOSTarget("ios") {}
 
     sourceSets {
         val commonMain by getting
@@ -52,7 +62,7 @@ kotlin {
         ios.deploymentTarget = "9.0"
         // You can change the name of the produced framework.
         // By default, it is the name of the Gradle project.
-        frameworkName = "SharedFramework"
+        frameworkName = iosFrameworkName
         podfile = project.file("../ios/Podfile")
     }
 }

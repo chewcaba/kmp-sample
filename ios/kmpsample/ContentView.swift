@@ -14,6 +14,8 @@ struct ContentView: View {
     @State var username = ""
     @State var password = ""
     
+    var loginService = LoginServiceFactory().makeInstance()
+    
     var body: some View {
         VStack() {
             Spacer()

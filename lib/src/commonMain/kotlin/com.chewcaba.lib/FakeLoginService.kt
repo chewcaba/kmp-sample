@@ -1,6 +1,6 @@
 package com.chewcaba.lib
 
-internal class FakeLoginInteractor : LoginInteractor {
+internal class FakeLoginService : LoginService {
 
     @Throws(BadLoginError::class)
     override fun login(username: String, password: String): Result<Boolean> {
