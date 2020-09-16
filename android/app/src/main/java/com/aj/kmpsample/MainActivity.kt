@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
-import com.chewcaba.lib.LoginService
-import com.chewcaba.lib.Result
+import com.aj.lib.LoginService
+import com.aj.lib.Result
 
 class MainActivity : AppCompatActivity() {
 
