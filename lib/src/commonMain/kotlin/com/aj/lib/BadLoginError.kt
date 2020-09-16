@@ -1,3 +1,3 @@
-package com.chewcaba.lib
+package com.aj.lib
 
 class BadLoginError : Exception()

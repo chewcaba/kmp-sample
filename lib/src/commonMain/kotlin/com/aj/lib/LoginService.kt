@@ -1,4 +1,4 @@
-package com.chewcaba.lib
+package com.aj.lib
 
 interface LoginService {
 

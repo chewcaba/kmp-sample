@@ -9,7 +9,7 @@ plugins {
     id("maven-publish")
     kotlin("native.cocoapods") version "1.4.0"
 }
-group = "com.chewcaba"
+group = "com.aj"
 version = "1.0.1"
 
 publishing {

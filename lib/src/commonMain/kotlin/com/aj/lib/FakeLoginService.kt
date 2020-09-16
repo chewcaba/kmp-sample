@@ -1,4 +1,4 @@
-package com.chewcaba.lib
+package com.aj.lib
 
 internal class FakeLoginService : LoginService {
 

@@ -1,4 +1,4 @@
-package com.chewcaba.lib
+package com.aj.lib
 
 sealed class Result<out T : Any> {
     data class Success<out T : Any>(val data: T) : Result<T>()

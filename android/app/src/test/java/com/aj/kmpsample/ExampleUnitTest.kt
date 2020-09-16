@@ -1,4 +1,4 @@
-package com.chewcaba.kmpsample
+package com.aj.kmpsample
 
 import org.junit.Test
 
