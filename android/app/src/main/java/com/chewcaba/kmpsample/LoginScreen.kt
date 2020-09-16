@@ -8,7 +8,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,9 +16,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoginScreen(onClick: () -> Unit) {
-    val usernameState = mutableStateOf("")
-    val passwordState = mutableStateOf("")
+fun LoginScreen(
+    usernameState: MutableState<String>,
+    passwordState: MutableState<String>,
+    onClick: () -> Unit
+) {
     Scaffold(backgroundColor = MaterialTheme.colors.primary) {
         Column(
             modifier = Modifier.fillMaxHeight().padding(16.dp),
