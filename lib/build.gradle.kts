@@ -8,8 +8,26 @@ object Versions {
     const val kotlin = "1.4.0"
     const val ktor = "1.4.0"
     const val serialization = "1.0.0-RC"
-    const val sqlDelight = "1.4.2"
+    const val sqlDelight = "1.4.1"
 }
+
+//buildscript {
+//    repositories {
+//        gradlePluginPortal()
+//        jcenter()
+//        google()
+//        mavenCentral()
+//    }
+//
+//    val kotlinVersion: String by project
+//    val sqlDelightVersion: String by project
+//
+//    dependencies {
+//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+//        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
+//        classpath("com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion")
+//    }
+//}
 
 plugins {
     kotlin("multiplatform") version "1.4.0"
@@ -51,6 +69,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}")
                 implementation("com.squareup.sqldelight:runtime:${Versions.sqlDelight}")
