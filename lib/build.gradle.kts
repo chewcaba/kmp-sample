@@ -11,24 +11,6 @@ object Versions {
     const val sqlDelight = "1.4.1"
 }
 
-//buildscript {
-//    repositories {
-//        gradlePluginPortal()
-//        jcenter()
-//        google()
-//        mavenCentral()
-//    }
-//
-//    val kotlinVersion: String by project
-//    val sqlDelightVersion: String by project
-//
-//    dependencies {
-//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-//        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
-//        classpath("com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion")
-//    }
-//}
-
 plugins {
     kotlin("multiplatform") version "1.4.0"
     kotlin("plugin.serialization") version "1.4.0"
