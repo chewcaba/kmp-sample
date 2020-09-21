@@ -17,6 +17,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android-extensions")
     id("maven-publish")
+    id("com.squareup.sqldelight") version "1.4.2"
     kotlin("native.cocoapods") version "1.4.0"
 }
 group = "com.aj"
@@ -48,11 +49,15 @@ kotlin {
     iOSTarget("ios") {}
 
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
+        val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}")
+                implementation("com.squareup.sqldelight:runtime:${Versions.sqlDelight}")
+            }
+        }
+        val commonTest by getting {
+            dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
@@ -60,12 +65,14 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:${Versions.androidCoreKtx}")
+                implementation("com.squareup.sqldelight:android-driver:${Versions.sqlDelight}")
                 implementation("io.ktor:ktor-client-android:${Versions.ktor}")
             }
         }
         val androidTest by getting
         val iosMain by getting {
             dependencies {
+                implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
                 implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
