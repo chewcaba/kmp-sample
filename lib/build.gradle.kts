@@ -2,8 +2,18 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 val iosFrameworkName = "SharedFramework"
 
+object Versions {
+    const val androidCoreKtx = "1.2.0"
+    const val coroutine = "1.3.9"
+    const val kotlin = "1.4.0"
+    const val ktor = "1.4.0"
+    const val serialization = "1.0.0-RC"
+    const val sqlDelight = "1.4.2"
+}
+
 plugins {
     kotlin("multiplatform") version "1.4.0"
+    kotlin("plugin.serialization") version "1.4.0"
     id("com.android.library")
     id("kotlin-android-extensions")
     id("maven-publish")
@@ -41,17 +51,24 @@ kotlin {
         val commonMain by getting
         val commonTest by getting {
             dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}")
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.core:core-ktx:1.2.0")
+                implementation("androidx.core:core-ktx:${Versions.androidCoreKtx}")
+                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
             }
         }
         val androidTest by getting
-        val iosMain by getting
+        val iosMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+            }
+        }
         val iosTest by getting
     }
 
