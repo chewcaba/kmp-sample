@@ -107,3 +107,9 @@ android {
         }
     }
 }
+
+//sqldelight {
+//    database("AppDatabase") {
+//        packageName = "com.aj.lib.data.db"
+//    }
+//}
