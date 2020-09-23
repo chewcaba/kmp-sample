@@ -12,16 +12,16 @@ object Versions {
 }
 
 plugins {
+    id("com.android.library") version "1.4.0"
     kotlin("multiplatform") version "1.4.0"
     kotlin("plugin.serialization") version "1.4.0"
-    id("com.android.library")
     id("kotlin-android-extensions")
     id("maven-publish")
-    id("com.squareup.sqldelight") version "1.4.2"
+    id("com.squareup.sqldelight") version "1.4.1"
     kotlin("native.cocoapods") version "1.4.0"
 }
 group = "com.aj"
-version = "1.0.1"
+version = "1.0.2"
 
 publishing {
     repositories {
@@ -34,6 +34,24 @@ repositories {
     google()
     jcenter()
     mavenCentral()
+}
+
+android {
+    compileSdkVersion(29)
+    defaultConfig {
+        minSdkVersion(21)
+        targetSdkVersion(29)
+        versionCode = 1
+        versionName = "1.0"
+    }
+    sourceSets {
+        getByName("main") {
+            manifest.srcFile("src/androidMain/AndroidManifest.xml")
+            java.srcDirs("src/androidMain/kotlin")
+            res.srcDirs("src/androidMain/resources")
+            this.setRoot("src/androidMain")
+        }
+    }
 }
 
 kotlin {
@@ -64,7 +82,12 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
+        val androidDebug by getting
+        val androidRelease by getting
         val androidMain by getting {
+            this.dependsOn(commonMain)
+            androidDebug.dependsOn(this)
+            androidRelease.dependsOn(this)
             dependencies {
                 implementation("androidx.core:core-ktx:${Versions.androidCoreKtx}")
                 implementation("com.squareup.sqldelight:android-driver:${Versions.sqlDelight}")
@@ -90,21 +113,6 @@ kotlin {
         // By default, it is the name of the Gradle project.
         frameworkName = iosFrameworkName
         podfile = project.file("../ios/Podfile")
-    }
-}
-
-android {
-    compileSdkVersion(29)
-    defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
     }
 }
 
